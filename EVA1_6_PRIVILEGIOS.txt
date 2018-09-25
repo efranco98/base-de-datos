@@ -1,0 +1,276 @@
+MySQL Shell 8.0.12
+
+Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 1
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > create user 'toatl_user'@'loaclhost' identify by '12345678';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'identify by '12345678'' at line 1
+
+ MySQL  localhost:3306  SQL > create user 'toatl_user'@'localhost' identify by '12345678';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'identify by '12345678'' at line 1
+
+ MySQL  localhost:3306  SQL > create user 'toatl_user'@'localhost' identified by '12345678';
+Query OK, 0 rows affected (0.0004 sec)
+
+ MySQL  localhost:3306  SQL > \connect -c toatl_user
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'temporal2@toatl_user'
+Please provide the password for 'temporal2@toatl_user': ********
+MySQL Error 2005 (HY000): Unknown MySQL server host 'toatl_user' (0)
+
+ MySQL  localhost:3306  SQL > \connect -c toatl_user@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'toatl_user@localhost'
+Please provide the password for 'toatl_user@localhost': ********
+Save password for 'toatl_user@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 16
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 17
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > set password for 'toatl_user'@'localhost' = '1234';
+ERROR: 1372 (HY000): Password hash should be a 41-digit hexadecimal number
+
+ MySQL  localhost:3306  SQL > \connect -c toatl_user@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'toatl_user@localhost'
+Please provide the password for 'toatl_user@localhost': ****
+MySQL Error 1045 (28000): Access denied for user 'toatl_user'@'localhost' (using password: YES)
+
+ MySQL  localhost:3306  SQL > y
+                          ... ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'y' at line 1
+
+ MySQL  localhost:3306  SQL > \connect -c toatl_user@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'toatl_user@localhost'
+Please provide the password for 'toatl_user@localhost': ****
+MySQL Error 1045 (28000): Access denied for user 'toatl_user'@'localhost' (using password: YES)
+
+ MySQL  localhost:3306  SQL > \connect -c toatl_user@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'toatl_user@localhost'
+Please provide the password for 'toatl_user@localhost':
+MySQL Error 1045 (28000): Access denied for user 'toatl_user'@'localhost' (using password: NO)
+
+ MySQL  localhost:3306  SQL >
+ MySQL  localhost:3306  SQL >
+ MySQL  localhost:3306  SQL >
+ MySQL  localhost:3306  SQL >
+ MySQL  localhost:3306  SQL > set password for 'total_user'@'localhost' = 'xxx.123';
+ERROR: 1372 (HY000): Password hash should be a 41-digit hexadecimal number
+
+ MySQL  localhost:3306  SQL > set password dor 'total_user'@'localhost' = 'perrodelmal666';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dor 'total_user'@'localhost' = 'perrodelmal666'' at line 1
+
+ MySQL  localhost:3306  SQL > set password for 'total_user'@'localhost = 'perrodelmal666'
+                          ... ;
+                          ... ;
+                          ... ´´
+                          ... '
+                          ... );
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'perrodelmal666'
+????
+'
+)' at line 1
+
+ MySQL  localhost:3306  SQL > set password for 'toatl_user'@'localhost' ='perrodelmal666';
+ERROR: 1372 (HY000): Password hash should be a 41-digit hexadecimal number
+
+ MySQL  localhost:3306  SQL > alter user 'toatl_user'@'localhost' identified by 'xxx.123';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user 'toatl_user'@'localhost' identified by 'xxx.123'' at line 1
+
+ MySQL  localhost:3306  SQL > select version();
++-----------+
+| version() |
++-----------+
+| 5.5.61    |
++-----------+
+1 row in set (0.0002 sec)
+
+ MySQL  localhost:3306  SQL > set password for 'toatl_user'@'localhost' = password('1234');
+Query OK, 0 rows affected (0.0004 sec)
+
+ MySQL  localhost:3306  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| evaluacion1        |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.0008 sec)
+
+ MySQL  localhost:3306  SQL > grant all on evaluacion1.* 'toatl_user'@'localhost';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''toatl_user'@'localhost'' at line 1
+
+ MySQL  localhost:3306  SQL > grant all on evaluacion1.* to 'toatl_user'@'localhost';
+Query OK, 0 rows affected (0.0245 sec)
+
+ MySQL  localhost:3306  SQL > \connect -c toatl_user@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'toatl_user@localhost'
+Please provide the password for 'toatl_user@localhost': ****
+Save password for 'toatl_user@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 21
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > \use evaluacion1
+Default schema set to `evaluacion1`.
+Fetching table and column names from `evaluacion1` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  evaluacion1  SQL > select*from paises
+                                       ... ;
++-------+--------+-----------+------------+
+| clave | nombre | publacion | continente |
++-------+--------+-----------+------------+
+|     1 | mexico |   1200000 | America    |
++-------+--------+-----------+------------+
+1 row in set (0.0193 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 22
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > create user 'solo_tablas'@'localhost' identify by '12345678';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'identify by '12345678'' at line 1
+
+ MySQL  localhost:3306  SQL > create user 'solo_tablas'@'localhost' identified by '12345678';
+Query OK, 0 rows affected (0.0031 sec)
+
+ MySQL  localhost:3306  SQL > grant all on evaluacion1.paises to 'aolo_tablas'@'localhost';
+ERROR: 1133 (42000): Can't find any matching row in the user table
+
+ MySQL  localhost:3306  SQL > grant all on evaluacion1.paises to 'solo_tablas'@'localhost';
+Query OK, 0 rows affected (0.0004 sec)
+
+ MySQL  localhost:3306  SQL > \connect -c solo_tablas@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'solo_tablas@localhost'
+Please provide the password for 'solo_tablas@localhost': ********
+Save password for 'solo_tablas@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 23
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| evaluacion1        |
++--------------------+
+2 rows in set (0.0007 sec)
+
+ MySQL  localhost:3306  SQL > \use evaluacion1
+Default schema set to `evaluacion1`.
+Fetching table and column names from `evaluacion1` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| paises                |
++-----------------------+
+1 row in set (0.0006 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 24
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > create user 'solo_select'@'localhost' identified by'123';
+Query OK, 0 rows affected (0.0004 sec)
+
+ MySQL  localhost:3306  SQL > grand select on evaluacion1.paises to 'solo_select'@'localhost';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grand select on evaluacion1.paises to 'solo_select'@'localhost'' at line 1
+
+ MySQL  localhost:3306  SQL > grant select on evaluacion1.paises to 'solo_select'@'localhost';
+Query OK, 0 rows affected (0.0005 sec)
+
+ MySQL  localhost:3306  SQL > \connect -c solo_select@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'solo_select@localhost'
+Please provide the password for 'solo_select@localhost': ***
+Save password for 'solo_select@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 25
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > \use evaluacion1
+Default schema set to `evaluacion1`.
+Fetching table and column names from `evaluacion1` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| paises                |
++-----------------------+
+1 row in set (0.0006 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > drop table paises;
+ERROR: 1142 (42000): DROP command denied to user 'solo_select'@'localhost' for table 'paises'
+
+ MySQL  localhost:3306  evaluacion1  SQL > select* from paises;
++-------+--------+-----------+------------+
+| clave | nombre | publacion | continente |
++-------+--------+-----------+------------+
+|     1 | mexico |   1200000 | America    |
++-------+--------+-----------+------------+
+1 row in set (0.0003 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL >

@@ -1,0 +1,274 @@
+MySQL Shell 8.0.12
+
+Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+
+ MySQL  SQL > create database EVALUACION1;
+ERROR: Not connected.
+
+ MySQL  SQL > connect -c root@localhost
+ERROR: Not connected.
+
+          ... ;
+ERROR: Not connected.
+
+ MySQL  SQL > \connect -c root@localhost
+The -c option is deprecated, please use --mysql or -mc instead
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost:3306'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 1
+Server version: 5.5.61 MySQL Community Server (GPL)
+No default schema selected; type \use <schema> to set one.
+
+ MySQL  localhost:3306  SQL > create database Evaluacion1;
+Query OK, 1 row affected (0.1188 sec)
+
+ MySQL  localhost:3306  SQL > /use Evaluacion1
+                          ... ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/use Evaluacion1' at line 1
+
+ MySQL  localhost:3306  SQL > \use Evaluacion1
+Default schema set to `Evaluacion1`.
+Fetching table and column names from `evaluacion1` for auto-completion... Press ^C to stop.
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Materias(
+                                       ... nomre varchar(100),
+                                       ... creditos int,
+                                       ... Horas_Teoricas int,
+                                       ... Horas_Practicas int,
+                                       ... Carrera varchar(3),
+                                       ... semestre int);
+Query OK, 0 rows affected (1.0857 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| materias              |
++-----------------------+
+1 row in set (0.0006 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc table;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table' at line 1
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc materias;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| nomre           | varchar(100) | YES  |     | NULL    |       |
+| creditos        | int(11)      | YES  |     | NULL    |       |
+| Horas_Teoricas  | int(11)      | YES  |     | NULL    |       |
+| Horas_Practicas | int(11)      | YES  |     | NULL    |       |
+| Carrera         | varchar(3)   | YES  |     | NULL    |       |
+| semestre        | int(11)      | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+6 rows in set (0.0052 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Estudiantes(
+                                       ... no_control varchar(10),
+                                       ... nombre varchar(50),
+                                       ... Apellido_materno(50),
+                                       ... Apellido_paterno(50),
+                                       ... direccion varchar(100),
+                                       ... fecha_nacimiento date,
+                                       ... lugar_nacimiento varchar(50),
+                                       ... pais varchar(50),
+                                       ... genero varchar(50),
+                                       ... genero varchar(50));
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(50),
+Apellido_paterno(50),
+direccion varchar(100),
+fecha_nacimiento date,
+lugar' at line 4
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Estudiantes( no_control varchar(10), nombre varchar(50), Apellido_paterno varchar(50), Apellido_materno varchar(50), direccion varchar(100), fecha_nacimiento date, lugar_nacimiento varchar(50), pais varchar(50), genero varchar(50), genero varchar(50));
+ERROR: 1060 (42S21): Duplicate column name 'genero'
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables
+                                       ... ;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| materias              |
++-----------------------+
+1 row in set (0.0008 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > \use estudiantes
+MySQL Error 1049 (42000): ClassicSession.runSql: Unknown database 'estudiantes'
+
+ MySQL  localhost:3306  evaluacion1  SQL > create database estudiantes
+                                       ... ;
+Query OK, 1 row affected (0.0019 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Estudiantes( no_control varchar(10), nombre varchar(50), Apellido_paterno varchar(50), Apellido_materno varchar(50), direccion varchar(100), fecha_nacimiento date, lugar_nacimiento varchar(50), pais varchar(50), genero varchar(50), genero varchar(50));
+ERROR: 1060 (42S21): Duplicate column name 'genero'
+
+ MySQL  localhost:3306  evaluacion1  SQL > /use estudiantes
+                                       ... ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/use estudiantes' at line 1
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table estudiantes
+                                       ... ;
+ERROR: 1113 (42000): A table must have at least 1 column
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table estudiantes ;
+ERROR: 1113 (42000): A table must have at least 1 column
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Estudiantes( no_control varchar(10), nombre varchar(50), Apellido_paterno varchar(50), Apellido_materno varchar(50), direccion varchar(100), fecha_nacimiento date, lugar_nacimiento varchar(50), pais varchar(50), genero varchar(50), genero varchar(50));
+ERROR: 1060 (42S21): Duplicate column name 'genero'
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Estudiantes( no_control varchar(10), nombre varchar(50), Apellido_paterno varchar(50), Apellido_materno varchar(50), direccion varchar(100), fecha_nacimiento date, lugar_nacimiento varchar(50), pais varchar(50), genero varchar(50));
+Query OK, 0 rows affected (1.2832 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > create temporary table Temporal(
+                                       ... nombre varchar(50));
+Query OK, 0 rows affected (0.0317 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables
+                                       ... ;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| estudiantes           |
+| materias              |
++-----------------------+
+2 rows in set (0.0006 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > No me voy a salir para no perder mi codiguito :v
+                                       ... ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'No me voy a salir para no perder mi codiguito :v' at line 1
+
+ MySQL  localhost:3306  evaluacion1  SQL > create table Condenada(
+                                       ... no_por_favor int);
+Query OK, 0 rows affected (0.0396 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables ;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| condenada             |
+| estudiantes           |
+| materias              |
++-----------------------+
+3 rows in set (0.0006 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > drop table condenada;
+Query OK, 0 rows affected (0.1370 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > show tables;
++-----------------------+
+| Tables_in_evaluacion1 |
++-----------------------+
+| estudiantes           |
+| materias              |
++-----------------------+
+2 rows in set (0.0006 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc estudianted;
+ERROR: 1146 (42S02): Table 'evaluacion1.estudianted' doesn't exist
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc estudiantes;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| no_control       | varchar(10)  | YES  |     | NULL    |       |
+| nombre           | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_paterno | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_materno | varchar(50)  | YES  |     | NULL    |       |
+| direccion        | varchar(100) | YES  |     | NULL    |       |
+| fecha_nacimiento | date         | YES  |     | NULL    |       |
+| lugar_nacimiento | varchar(50)  | YES  |     | NULL    |       |
+| pais             | varchar(50)  | YES  |     | NULL    |       |
+| genero           | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+9 rows in set (0.0049 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > alter table estudiantes ADD column no_telefono varchar(50);
+Query OK, 0 rows affected (0.3640 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc estudiantes;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| no_control       | varchar(10)  | YES  |     | NULL    |       |
+| nombre           | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_paterno | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_materno | varchar(50)  | YES  |     | NULL    |       |
+| direccion        | varchar(100) | YES  |     | NULL    |       |
+| fecha_nacimiento | date         | YES  |     | NULL    |       |
+| lugar_nacimiento | varchar(50)  | YES  |     | NULL    |       |
+| pais             | varchar(50)  | YES  |     | NULL    |       |
+| genero           | varchar(50)  | YES  |     | NULL    |       |
+| no_telefono      | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+10 rows in set (0.0062 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > alter table estudiantes ADD column correo varchar(50) after direccion;
+Query OK, 0 rows affected (0.1381 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306  evaluacion1  SQL > des estudiantes
+                                       ... ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'des estudiantes' at line 1
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc estudiantes;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| no_control       | varchar(10)  | YES  |     | NULL    |       |
+| nombre           | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_paterno | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_materno | varchar(50)  | YES  |     | NULL    |       |
+| direccion        | varchar(100) | YES  |     | NULL    |       |
+| correo           | varchar(50)  | YES  |     | NULL    |       |
+| fecha_nacimiento | date         | YES  |     | NULL    |       |
+| lugar_nacimiento | varchar(50)  | YES  |     | NULL    |       |
+| pais             | varchar(50)  | YES  |     | NULL    |       |
+| genero           | varchar(50)  | YES  |     | NULL    |       |
+| no_telefono      | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+11 rows in set (0.0056 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL > alter table estudiante drop correo;
+ERROR: 1146 (42S02): Table 'evaluacion1.estudiante' doesn't exist
+
+ MySQL  localhost:3306  evaluacion1  SQL > alter table estudiantes drop correo;
+Query OK, 0 rows affected (0.0884 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+ MySQL  localhost:3306  evaluacion1  SQL > des estudiantes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'des estudiantes' at line 1
+
+ MySQL  localhost:3306  evaluacion1  SQL > desc estudiantes;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| no_control       | varchar(10)  | YES  |     | NULL    |       |
+| nombre           | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_paterno | varchar(50)  | YES  |     | NULL    |       |
+| Apellido_materno | varchar(50)  | YES  |     | NULL    |       |
+| direccion        | varchar(100) | YES  |     | NULL    |       |
+| fecha_nacimiento | date         | YES  |     | NULL    |       |
+| lugar_nacimiento | varchar(50)  | YES  |     | NULL    |       |
+| pais             | varchar(50)  | YES  |     | NULL    |       |
+| genero           | varchar(50)  | YES  |     | NULL    |       |
+| no_telefono      | varchar(50)  | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+10 rows in set (0.0057 sec)
+
+ MySQL  localhost:3306  evaluacion1  SQL >
